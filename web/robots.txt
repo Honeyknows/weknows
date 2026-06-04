@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://subnetmaster.example.com/sitemap.xml
