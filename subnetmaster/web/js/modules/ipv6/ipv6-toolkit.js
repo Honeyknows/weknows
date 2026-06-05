@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { analyzeIPv6, isValidIPv6, compressIPv6, expandIPv6 } from '../../../../core/ipv6-utils.js';
+import { analyzeIPv6, isValidIPv6, compressIPv6, expandIPv6 } from '../../../core/ipv6-utils.js';
 import { addToHistory } from '../../utils/storage-utils.js';
 import { showToast, createCopyButton } from '../../utils/ui-utils.js';
 

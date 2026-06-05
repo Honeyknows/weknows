@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { parseCidr, splitSubnet, isValidIp, isValidCidr } from '../../../../core/ip-utils.js';
+import { parseCidr, splitSubnet, isValidIp, isValidCidr } from '../../../core/ip-utils.js';
 import { showToast } from '../../utils/ui-utils.js';
 
 export function render(container) {

@@ -7,8 +7,8 @@
  * ============================================================
  */
 
-import { isValidIp, getIpClass, getIpType } from '../../../../core/ip-utils.js';
-import { lookupReservedNetwork, getRFC, RESERVED_NETWORKS } from '../../../../core/rfc-data.js';
+import { isValidIp, getIpClass, getIpType } from '../../../core/ip-utils.js';
+import { lookupReservedNetwork, getRFC, RESERVED_NETWORKS } from '../../../core/rfc-data.js';
 import { addToHistory } from '../../utils/storage-utils.js';
 import { showToast, createCopyButton } from '../../utils/ui-utils.js';
 

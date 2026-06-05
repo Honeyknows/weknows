@@ -7,8 +7,8 @@
  * ============================================================
  */
 
-import { CIDR_CHEAT_SHEET } from '../../../../core/rfc-data.js';
-import * as ipUtils from '../../../../core/ip-utils.js';
+import { CIDR_CHEAT_SHEET } from '../../../core/rfc-data.js';
+import * as ipUtils from '../../../core/ip-utils.js';
 import * as uiUtils from '../../utils/ui-utils.js';
 
 export function render(container) {

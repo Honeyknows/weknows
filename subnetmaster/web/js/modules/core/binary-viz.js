@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { calculateSubnet, isValidIp, isValidCidr, parseCidr, intToBinary } from '../../../../core/ip-utils.js';
+import { calculateSubnet, isValidIp, isValidCidr, parseCidr, intToBinary } from '../../../core/ip-utils.js';
 import { showToast } from '../../utils/ui-utils.js';
 
 export function render(container) {

@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { planGrowth } from '../../../../core/ip-utils.js';
+import { planGrowth } from '../../../core/ip-utils.js';
 import { addToHistory } from '../../utils/storage-utils.js';
 import { formatNumber } from '../../utils/ui-utils.js';
 

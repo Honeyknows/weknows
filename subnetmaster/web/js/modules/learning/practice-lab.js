@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { calculateSubnet, intToIp, cidrToMask, maskStringToCidr } from '../../../../core/ip-utils.js';
+import { calculateSubnet, intToIp, cidrToMask, maskStringToCidr } from '../../../core/ip-utils.js';
 import { showToast } from '../../utils/ui-utils.js';
 
 let currentScenario = null;

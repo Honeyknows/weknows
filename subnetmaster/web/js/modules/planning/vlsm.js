@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { vlsmAllocate, isValidIp, isValidCidr, parseCidr } from '../../../../core/ip-utils.js';
+import { vlsmAllocate, isValidIp, isValidCidr, parseCidr } from '../../../core/ip-utils.js';
 import { addToHistory, addToFavorites } from '../../utils/storage-utils.js';
 import { showToast, formatNumber } from '../../utils/ui-utils.js';
 

@@ -6,7 +6,7 @@
  * ============================================================
  */
 
-import { detectOverlaps, parseCidr } from '../../../../core/ip-utils.js';
+import { detectOverlaps, parseCidr } from '../../../core/ip-utils.js';
 import { showToast } from '../../utils/ui-utils.js';
 
 export function render(container) {

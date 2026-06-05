@@ -6,7 +6,7 @@
  * ============================================================
  */
 
-import { calculateSupernet, parseCidr, isValidIp, isValidCidr } from '../../../../core/ip-utils.js';
+import { calculateSupernet, parseCidr, isValidIp, isValidCidr } from '../../../core/ip-utils.js';
 import { addToHistory } from '../../utils/storage-utils.js';
 import { showToast, createCopyButton, formatNumber } from '../../utils/ui-utils.js';
 

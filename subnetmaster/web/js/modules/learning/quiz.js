@@ -7,7 +7,7 @@
  * ============================================================
  */
 
-import { calculateSubnet, intToIp, ipToInt, cidrToMask, isValidIp } from '../../../../core/ip-utils.js';
+import { calculateSubnet, intToIp, ipToInt, cidrToMask, isValidIp } from '../../../core/ip-utils.js';
 import { saveQuizScore } from '../../utils/storage-utils.js';
 
 let currentQuestion = 0;
