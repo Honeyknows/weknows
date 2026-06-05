@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WeKnows – A premium collection of web-based developer utilities, network tools, and educational playgrounds. Built for speed, privacy, and visual excellence.">
+    <title>WeKnows – Developer Utilities & Networking Hub</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #080b11;
+            --surface-color: rgba(17, 24, 39, 0.7);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            
+            /* Curated Gradients */
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-secondary: #a855f7; /* Purple */
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --glow-gradient: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Ambient background glow effects */
+        .ambient-glow-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(80px);
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            bottom: 10%;
+            right: -10%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(80px);
+        }
+
+        /* Header / Navigation */
+        header {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--surface-border);
+            background: rgba(8, 11, 17, 0.6);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo i {
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--surface-border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 99px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary) !important;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10rem 2rem 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #818cf8;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+            font-weight: 300;
+        }
+
+        /* Grid Section */
+        .projects-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 8rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--accent-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 24px;
+            padding: 2.25rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--glow-gradient);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #a5b4fc;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.active {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .status-badge.upcoming {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .project-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            color: var(--text-secondary);
+        }
+
+        .card-footer {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .launch-btn {
+            background: #ffffff;
+            color: #080b11;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .launch-btn:hover {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .launch-btn i {
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+        }
+
+        .launch-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Upcoming card styling details */
+        .project-card.upcoming-card {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .project-card.upcoming-card:hover {
+            transform: none;
+            border-color: var(--surface-border);
+            box-shadow: none;
+        }
+
+        .project-card.upcoming-card:hover::before {
+            opacity: 0;
+        }
+
+        .upcoming-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid var(--surface-border);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: center;
+            cursor: not-allowed;
+        }
+
+        /* Features Section */
+        .features-section {
+            border-top: 1px solid var(--surface-border);
+            background: rgba(17, 24, 39, 0.2);
+            padding: 6rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            width: fit-content;
+        }
+
+        .feature-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--surface-border);
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--bg-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            color: #4b5563;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* simple responsive setup */
+            }
+            .hero {
+                padding: 8rem 1.5rem 4rem 1.5rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-brain"></i>
+                <span>WeKnows</span>
+            </a>
+            <div class="nav-links">
+                <a href="#projects">Explore Apps</a>
+                <a href="https://github.com/Honeyknows/weknows" target="_blank" class="nav-btn">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="badge">
+            <i class="fa-solid fa-bolt"></i> Speed, Simplicity & Privacy
+        </div>
+        <h1>Next-Gen Developer &<br><span>Network Utilities</span></h1>
+        <p>A curated collection of client-side web applications designed to make technical diagnostics, calculation, and learning effortless. No ads. No tracking.</p>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">
+            <i class="fa-solid fa-cube"></i> Live Utilities
+        </h2>
+        <div class="projects-grid">
+            <!-- Card 1: SubnetMaster (Active) -->
+            <div class="project-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="project-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <span class="status-badge active">Live</span>
+                    </div>
+                    <h3 class="project-title">SubnetMaster</h3>
+                    <p class="project-desc">Professional networking toolkit with IPv4/IPv6 CIDR calculators, interactive subnet tree visualizations, overlapping detection, and gamified practice labs.</p>
+                    <div class="tags-container">
+                        <span class="tag">IPv4 / IPv6</span>
+                        <span class="tag">CIDR Calculator</span>
+                        <span class="tag">VLSM</span>
+                        <span class="tag">Practice Sandbox</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/subnetmaster/" class="launch-btn" id="btn-subnetmaster">
+                        Launch Application <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: DNS Diagnostic Hub (Upcoming) -->
+            <div class="project-card upcoming-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="project-icon">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <span class="status-badge upcoming">Coming Soon</span>
+                    </div>
+                    <h3 class="project-title">DNS Diagnostic Hub</h3>
+                    <p class="project-desc">Perform full multi-server DNS propagation checks, trace NS records, inspect raw headers, and diagnose resolution issues directly from your browser.</p>
+                    <div class="tags-container">
+                        <span class="tag">DNS Lookup</span>
+                        <span class="tag">Propagation</span>
+                        <span class="tag">Trace Route</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="upcoming-btn" disabled>Coming Soon</button>
+                </div>
+            </div>
+
+            <!-- Card 3: Payload Studio (Upcoming) -->
+            <div class="project-card upcoming-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="project-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="status-badge upcoming">Coming Soon</span>
+                    </div>
+                    <h3 class="project-title">Payload Studio</h3>
+                    <p class="project-desc">Inspect, format, parse, and sign JSON, JWTs, Base64, and URL parameters with syntax validation, beautiful diff comparisons, and instant conversion.</p>
+                    <div class="tags-container">
+                        <span class="tag">JWT Decoder</span>
+                        <span class="tag">JSON Formatter</span>
+                        <span class="tag">Base64</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="upcoming-btn" disabled>Coming Soon</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3 class="feature-title">Privacy Focused</h3>
+                    <p class="feature-desc">All calculations and conversions happen entirely client-side in your web browser. Your network data never leaves your device.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                    <h3 class="feature-title">High Performance</h3>
+                    <p class="feature-desc">Sub-millisecond responses built on pure, light modern JavaScript without bloated, battery-draining framework layers.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3 class="feature-title">Interactive Learning</h3>
+                    <p class="feature-desc">Not just calculator interfaces—each tool offers visualizations and sandboxes to help developers build deep conceptual mastery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#projects">All Utilities</a>
+                <a href="https://github.com/Honeyknows/weknows" target="_blank">GitHub</a>
+            </div>
+            <p class="copyright">&copy; 2026 WeKnows. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
