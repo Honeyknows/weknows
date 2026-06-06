@@ -1,5 +1,5 @@
 {
-  "name": "subnetmaster",
+  "name": "@honeyknows/subnetmaster",
   "version": "1.0.0",
   "description": "Professional IPv4/IPv6 Subnet Calculator and Network Planning Tool CLI",
   "main": "cli/index.js",
