@@ -7,9 +7,9 @@ const ASSETS_TO_CACHE = [
     './js/utils/storage-utils.js',
     './js/utils/ui-utils.js',
     './js/utils/export-utils.js',
-    '../core/ip-utils.js',
-    '../core/ipv6-utils.js',
-    '../core/rfc-data.js',
+    './core/ip-utils.js',
+    './core/ipv6-utils.js',
+    './core/rfc-data.js',
     // We cache the core modules so they work offline
     './js/modules/dashboard.js',
     './js/modules/core/subnet-calculator.js',
@@ -30,7 +30,7 @@ const ASSETS_TO_CACHE = [
     './js/modules/data/history.js',
     './js/modules/data/favorites.js',
     './js/modules/data/export-center.js',
-    'https://cdn.jsdelivr.net/npm/chart.js'
+    'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js'
 ];
 
 // Install Event
