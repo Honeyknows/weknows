@@ -181,23 +181,25 @@ function renderCidrChart(cidrs) {
  */
 function renderRecentActivity(items) {
     return `
-        <table class="data-table">
-            <thead><tr><th>Type</th><th>Input</th><th>Result</th><th>Time</th></tr></thead>
-            <tbody>
-                ${items.map(item => {
-                    const time = new Date(item.timestamp);
-                    const timeStr = time.toLocaleDateString() + ' ' + time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    return `
-                        <tr>
-                            <td><span class="badge badge-info">${item.type || 'calc'}</span></td>
-                            <td>${item.input || '—'}</td>
-                            <td>${item.result || '—'}</td>
-                            <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 12px;">${timeStr}</td>
-                        </tr>
-                    `;
-                }).join('')}
-            </tbody>
-        </table>
+        <div style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+            <table class="data-table">
+                <thead><tr><th>Type</th><th>Input</th><th>Result</th><th>Time</th></tr></thead>
+                <tbody>
+                    ${items.map(item => {
+                        const time = new Date(item.timestamp);
+                        const timeStr = time.toLocaleDateString() + ' ' + time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        return `
+                            <tr>
+                                <td><span class="badge badge-info">${item.type || 'calc'}</span></td>
+                                <td>${item.input || '—'}</td>
+                                <td>${item.result || '—'}</td>
+                                <td style="color: var(--text-muted); font-family: var(--font-sans); font-size: 12px; white-space: nowrap;">${timeStr}</td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+        </div>
     `;
 }
 
