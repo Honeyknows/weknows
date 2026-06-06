@@ -160,9 +160,7 @@ a:hover { text-decoration: underline; }
     overflow-x: hidden;
 }
 
-.sidebar::-webkit-scrollbar { width: 4px; }
-.sidebar::-webkit-scrollbar-track { background: transparent; }
-.sidebar::-webkit-scrollbar-thumb { background: var(--border-secondary); border-radius: 4px; }
+/* Custom scrollbars hidden */
 
 .sidebar-brand {
     padding: 20px 18px;
@@ -1232,10 +1230,8 @@ a:hover { text-decoration: underline; }
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-secondary); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+::-webkit-scrollbar { display: none; }
+html { scrollbar-width: none; -ms-overflow-style: none; }
 
 /* ─── Selection ─────────────────────────────────────────────── */
 ::selection {
@@ -1270,6 +1266,7 @@ a:hover { text-decoration: underline; }
 
     .sidebar {
         transform: translateX(-100%);
+        padding-top: 64px; /* Prevents toggle button from overlapping the logo */
     }
 
     .sidebar.open {
