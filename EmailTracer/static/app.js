@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnAnalyze.textContent = 'Processing...';
             
             try {
-                const response = await fetch('/analyze', {
+                const response = await fetch('https://weknows.onrender.com/analyze', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = true;
             
             try {
-                const response = await fetch('/export/pdf', {
+                const response = await fetch('https://weknows.onrender.com/export/pdf', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(currentAnalysis)
