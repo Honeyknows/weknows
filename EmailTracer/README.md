@@ -50,4 +50,3 @@ AbuseIPDB is optional but recommended for accurate threat scoring.
 
 - Gmail, Outlook, Yahoo, and other large providers often hide the true original sender IP.
 - Privacy-focused services may provide limited routing information.
-- Free APIs (like ip-api) may be rate-limited if heavily utilized without a paid key.
