@@ -23,7 +23,7 @@ EmailTracer is built as a stateless, production-ready web application:
 
 ```powershell
 # Clone the repository
-cd C:\taniya\HTML\EmailTracer
+# Open it
 
 # Create and activate virtual environment
 python -m venv .venv
