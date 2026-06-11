@@ -13,7 +13,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger("emailtracer.api")
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="EmailTracer API", version="2.0.0")
+
+# Add CORS so the Cloudflare frontend can talk to this backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # In production, restrict this to your Cloudflare URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class AnalyzeRequest(BaseModel):
     headers: str = Field(..., min_length=10, description="Raw email headers")
