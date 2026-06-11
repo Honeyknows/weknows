@@ -30,6 +30,11 @@ mkdir -p dist/subnetmaster
 # Using cp -r with trailing dot copies contents instead of the directory itself
 cp -R subnetmaster/web/. dist/subnetmaster/
 
+# ── EmailTracer ───────────────────────────────────────────────
+echo "📦 Assembling EmailTracer..."
+mkdir -p dist/emailtracer
+cp -R EmailTracer/static/. dist/emailtracer/
+
 echo "✅ Build complete! Output in dist/"
 echo "   dist/"
 echo "   ├── index.html                (landing page)"
