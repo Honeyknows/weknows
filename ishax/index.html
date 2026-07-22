@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISHAX EDR | In-Memory AMSI & Dual Detection</title>
+  <meta name="description" content="ISHAX EDR is an Endpoint Detection and Response tool featuring ETW AMSI script tracing, pySigma correlation rules, and isolated SQLite database storage.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Background Effect -->
+  <div class="ambient-glow-top"></div>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <span>ISHAX <span style="font-weight:400; color:var(--text-dim);">EDR</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#mitre">MITRE Coverage</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#quickstart">Quickstart</a></li>
+        <li class="nav-cta-item">
+          <a href="https://github.com/Honeyknows/ishax" target="_blank" class="btn btn-primary nav-cta-btn">
+            <i class="fa-brands fa-github"></i> GitHub Repo
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://github.com/Honeyknows/ishax" target="_blank" class="btn btn-primary desktop-cta">
+          <i class="fa-brands fa-github"></i> GitHub Repo
+        </a>
+        <button class="mobile-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">
+      Detect Fileless Script Attacks using <span class="gradient-text">AMSI & Sysmon Telemetry</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      ISHAX catches script payloads directly from RAM before they run, matching AMSI events with Sysmon logs to accurately detect fileless malware.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://github.com/Honeyknows/ishax" target="_blank" class="btn btn-primary btn-lg">
+        <i class="fa-brands fa-github"></i> View GitHub Repository
+      </a>
+    </div>
+  </section>
+
+  <!-- Core Features Grid -->
+  <section id="features" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">Features</span>
+      <h2 class="section-title">Detection Capabilities</h2>
+      <p class="section-desc">Visibility across in-memory scripts, process creations, network connections, registry keys, and multi-tenant database management.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+        <h3>In-Memory AMSI ETW Interception</h3>
+        <p>Native C# ETW watcher service (<code>amsi_watcher.exe</code>) listening on provider <code>{2A576B87-09A7-520E-C21A-4942F0271D67}</code> to record un-obfuscated script content before execution.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <h3>Dual-Layer pySigma Correlation</h3>
+        <p>Merges AMSI memory regex patterns with pySigma YAML rules across a 30-second correlation window to trigger high-confidence alerts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
+        <h3>T1027 Entropy Analysis</h3>
+        <p>Calculates Shannon Entropy and Base64 density on script blocks. High obfuscation scores trigger alert priority flags in the alert queue.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <h3>Multi-Tenant Database Isolation</h3>
+        <p>Master directory database (<code>master.db</code>) routing operational events to isolated per-tenant SQLite databases (<code>tenant_&lt;uuid&gt;.db</code>).</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-handshake-slash"></i></div>
+        <h3>Host Network Isolation</h3>
+        <p>Active Response firewall script (<code>isolate.ps1</code>) to sever compromised host network traffic while maintaining agent connection ports.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>AI Incident Triage</h3>
+        <p>Assistant endpoints supporting OpenAI, Gemini, and Ollama models for root-cause analysis and remediation script recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MITRE ATT&CK Coverage Matrix -->
+  <section id="mitre" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">MITRE ATT&CK Matrix</span>
+      <h2 class="section-title">Technique Coverage</h2>
+      <p class="section-desc">Monitors and flags post-exploitation techniques across the MITRE ATT&CK framework.</p>
+    </div>
+
+    <div class="mitre-grid">
+      <div class="mitre-card active">
+        <div class="mitre-id">T1059.001</div>
+        <div class="mitre-name">PowerShell Execution</div>
+        <div class="mitre-desc">Intercepts memory script blocks, <code>-EncodedCommand</code>, hidden windows, and web download cradles.</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1027</div>
+        <div class="mitre-name">Obfuscated Files & Scripts</div>
+        <div class="mitre-desc">Evaluates Base64 density, XOR strings, character concatenations, and high Shannon entropy.</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1036</div>
+        <div class="mitre-name">Process Masquerading</div>
+        <div class="mitre-desc">Identifies PE metadata vs. file execution path mismatches (e.g. <code>svchost.exe</code> outside System32).</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1219</div>
+        <div class="mitre-name">Remote Access Tool Abuse</div>
+        <div class="mitre-desc">Detects unauthorized AnyDesk, TeamViewer, Ngrok, and Atera remote management utilities.</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1543.003</div>
+        <div class="mitre-name">Windows Service Creation</div>
+        <div class="mitre-desc">Monitors Sysmon EID 1, System EID 7045, Security EID 4697, and <code>sc.exe</code> execution.</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1547.001</div>
+        <div class="mitre-name">Registry Run Keys</div>
+        <div class="mitre-desc">Detects persistence writes to <code>HKLM\...\Run</code> and <code>RunOnce</code> via Sysmon EID 13.</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1003</div>
+        <div class="mitre-name">OS Credential Dumping</div>
+        <div class="mitre-desc">Monitors LSASS process memory access attempts via <code>comsvcs.dll</code> minidumps and Mimikatz.</div>
+      </div>
+
+      <div class="mitre-card">
+        <div class="mitre-id">T1055</div>
+        <div class="mitre-name">Process Injection</div>
+        <div class="mitre-desc">Tracks remote thread creation (Sysmon EID 8) and cross-process memory operations.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Architecture Diagram -->
+  <section id="architecture" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">System Architecture</span>
+      <h2 class="section-title">Pipeline & Data Flow</h2>
+      <p class="section-desc">From endpoint kernel events to backend detection and process tree graph renderers.</p>
+    </div>
+
+    <div class="arch-card">
+      <div style="font-family:var(--font-mono); font-size:12px; color:var(--accent-white); font-weight:700; margin-bottom:12px; letter-spacing:1px; text-shadow:0 0 10px rgba(255,255,255,0.3);">PIPELINE DATA FLOW</div>
+      
+      <div class="arch-steps">
+        <div class="arch-step-box">
+          <h4>1. Endpoint Agent</h4>
+          <p>Sysmon64 + Native ETW AMSI Service</p>
+        </div>
+        <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+        <div class="arch-step-box">
+          <h4>2. Log Forwarder</h4>
+          <p>Wazuh Agent over Port 1514 (Encrypted TLS)</p>
+        </div>
+        <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+        <div class="arch-step-box">
+          <h4>3. Ingestor Engine</h4>
+          <p>Normalizes raw log stream into SQLite schema</p>
+        </div>
+        <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+        <div class="arch-step-box">
+          <h4>4. Dual Detector</h4>
+          <p>AMSI Regex + pySigma YAML 30s Correlation</p>
+        </div>
+        <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+        <div class="arch-step-box">
+          <h4>5. Server & Dashboard</h4>
+          <p>FastAPI Backend & React Process Ancestry UI</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start Guide -->
+  <section id="quickstart" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">Deployment</span>
+      <h2 class="section-title">Quickstart Guide</h2>
+      <p class="section-desc">Commands to launch the server stack and endpoint agent scripts locally.</p>
+    </div>
+
+    <div class="code-box">
+      <div style="color:var(--text-dim); margin-bottom:8px;"># 1. Launch full EDR server stack (Wazuh Docker + FastAPI + Ingestor + React Dashboard)</div>
+      <div style="color:#10B981; margin-bottom:16px;">START EDR.bat</div>
+
+      <div style="color:var(--text-dim); margin-bottom:8px;"># 2. Check operational status of all services</div>
+      <div style="color:#60A5FA; margin-bottom:16px;">powershell.exe -ExecutionPolicy Bypass -File .\server\start_local.ps1 -Status</div>
+
+      <div style="color:var(--text-dim); margin-bottom:8px;"># 3. Deploy agent to Windows endpoint (elevated PowerShell)</div>
+      <div style="color:#F59E0B;">.\endpoint\SETUP ENDPOINT.bat</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <span>ISHAX <span style="font-weight:400; color:var(--text-dim);">EDR</span></span>
+        </a>
+        <p class="footer-tagline">Endpoint Detection & Response System with ETW AMSI Memory Tracing & Dual-Layer Analytics.</p>
+      </div>
+
+      <div class="footer-links-row">
+        <a href="#features">Features</a>
+        <a href="#mitre">MITRE Coverage</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#quickstart">Quickstart</a>
+        <a href="https://github.com/Honeyknows/ishax" target="_blank" class="footer-btn">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+        <a href="https://weknows.me" target="_blank" class="footer-btn">
+          <i class="fa-solid fa-brain"></i> WeKnows Hub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Engine -->
+  <script src="app.js"></script>
+</body>
+</html>
