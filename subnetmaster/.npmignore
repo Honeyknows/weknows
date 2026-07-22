@@ -1,0 +1,8 @@
+web/
+docs/
+.github/
+.vscode/
+tests/
+assets/
+technical-context.txt
+context.txt

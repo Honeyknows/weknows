@@ -1,0 +1,10 @@
+{
+  "name": "SubnetMaster - Network Planning Suite",
+  "short_name": "SubnetMaster",
+  "description": "Professional IPv4/IPv6 Subnet Calculator and Network Planning Tool",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait"
+}

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-whois
+requests
+python-Levenshtein
+email-validator
+dnspython
+reportlab
+pytest

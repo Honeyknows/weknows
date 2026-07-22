@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailTracer | Definitive Email Forensics</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS & Favicon -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/png" href="./logo.png">
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="./logo.png" alt="EmailTracer Logo" class="brand-logo">
+                <h1>EmailTracer</h1>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How it Works</a>
+                <a href="#app-dashboard" class="btn btn-primary btn-sm">Start Scanning</a>
+            </nav>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Nav Menu -->
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#features" class="nav-link mobile-link">Features</a>
+            <a href="#how-it-works" class="nav-link mobile-link">How it Works</a>
+            <a href="#app-dashboard" class="btn btn-primary w-full mt-4 mobile-link">Start Scanning</a>
+        </div>
+    </header>
+
+    <!-- Landing Page: Hero -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Definitive Email Forensics for Security Teams.</h1>
+                <p class="hero-subtitle">Instantly analyze raw email headers, extract critical IOCs, map network routes, and detect advanced phishing attacks with our enterprise-grade forensics engine.</p>
+                <div class="hero-actions">
+                    <a href="#app-dashboard" class="btn btn-primary btn-lg">Analyze an Email</a>
+                    <a href="#features" class="btn btn-outline btn-lg">Explore Features</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Code Snippet Graphic -->
+                <div class="mockup-window">
+                    <div class="mockup-header">
+                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        <div class="mockup-title">investigation_results.json</div>
+                    </div>
+                    <div class="mockup-body code-snippet">
+<pre><code><span class="json-key">"risk_assessment"</span>: {
+  <span class="json-key">"level"</span>: <span class="json-string">"CRITICAL"</span>,
+  <span class="json-key">"score"</span>: <span class="json-num">85</span>,
+  <span class="json-key">"flags"</span>: [
+    {
+      <span class="json-key">"indicator"</span>: <span class="json-string">"SPF_FAIL"</span>,
+      <span class="json-key">"severity"</span>: <span class="json-string">"HIGH"</span>
+    },
+    {
+      <span class="json-key">"indicator"</span>: <span class="json-string">"LOOKALIKE_DOMAIN"</span>,
+      <span class="json-key">"severity"</span>: <span class="json-string">"CRITICAL"</span>
+    }
+  ]
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landing Page: Features -->
+    <section id="features" class="features-section bg-gray">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title text-3xl">Comprehensive Threat Intelligence</h2>
+                <p class="section-subtitle">Everything you need to trace an email back to its true source.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Deep Header Inspection</h3>
+                    <p class="feature-desc">Detect subtle mismatches in Return-Path, Reply-To, and Message-ID domains to uncover sophisticated spoofing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Auth Alignment</h3>
+                    <p class="feature-desc">Rigorous validation of SPF, DKIM, and DMARC policies against real-world DNS records, not just observed results.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Network Routing</h3>
+                    <p class="feature-desc">Geolocate intermediate hops, detect proxies and datacenters, and identify the true origin IP of malicious senders.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3 class="feature-title">Chronological Timeline</h3>
+                    <p class="feature-desc">Visualize the exact transit path of the email, complete with calculated delays between hops to spot anomalies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3 class="feature-title">URL & Domain Intel</h3>
+                    <p class="feature-desc">Identify lookalike domains, brand impersonation, punycode attacks, and extract hidden IOCs instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3 class="feature-title">PDF Reporting</h3>
+                    <p class="feature-desc">Generate professional, C-suite ready PDF reports and JSON exports for seamless SOC integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landing Page: How it Works -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title text-3xl">How It Works</h2>
+                <p class="section-subtitle">Three simple steps to uncover the truth behind any email.</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="feature-title">Extract Headers</h3>
+                    <p class="feature-desc">Open the suspicious email in your client (Gmail, Outlook) and copy the raw, original message headers.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="feature-title">Run Analysis</h3>
+                    <p class="feature-desc">Paste the headers into EmailTracer. Our engine parses the routing, performs DNS lookups, and validates auth records.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="feature-title">Review Evidence</h3>
+                    <p class="feature-desc">Instantly receive a comprehensive risk score, IOC extraction, and a chronological routing timeline to take action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Application Section -->
+    <section id="app-dashboard" class="app-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-3xl">Forensics Dashboard</h2>
+                <p class="section-subtitle">Paste your raw RFC 5322 email headers below to begin the investigation.</p>
+            </div>
+            
+            <div class="app-container">
+                <div class="app-content">
+                    <!-- View: Analyze -->
+                    <div id="view-analyze" class="view active">
+                        <form id="analyze-form">
+                            <div class="form-row">
+                                <div class="form-group flex-1">
+                                    <label for="abuse-key">AbuseIPDB Key (Optional)</label>
+                                    <input type="password" id="abuse-key" placeholder="Enter API key for threat scoring...">
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label for="expected-domain">Expected Domain (Optional)</label>
+                                    <input type="text" id="expected-domain" placeholder="e.g. paypal.com (for lookalike detection)">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mt-4">
+                                <label for="raw-headers">Raw Email Headers</label>
+                                <textarea id="raw-headers" placeholder="Paste full RFC 5322 headers here..." required></textarea>
+                            </div>
+                            
+                            <div class="form-actions mt-6">
+                                <button type="submit" id="btn-analyze" class="btn btn-primary w-full-mobile">Run Analysis</button>
+                            </div>
+                        </form>
+                        
+                        <div id="error-container" class="alert alert-danger hidden mt-4">
+                            <strong>Analysis Failed:</strong> <span id="error-message"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- View: Results -->
+                    <div id="view-results" class="view">
+                        <div id="loading-spinner" class="loading-container hidden">
+                            <div class="spinner"></div>
+                            <span>Analyzing forensic evidence...</span>
+                        </div>
+
+                        <div id="results-container" class="results-container hidden">
+                            <!-- Results Toolbar -->
+                            <div class="results-toolbar flex-between align-center flex-wrap gap-4 mb-6" style="padding-bottom: 16px; border-bottom: 1px solid var(--border);">
+                                <button id="btn-back" class="btn btn-outline">← Start New Analysis</button>
+                                <div class="form-actions flex flex-wrap gap-4">
+                                    <button id="btn-copy-json" class="btn btn-outline">Copy JSON</button>
+                                    <button id="btn-export-pdf" class="btn btn-primary">Download PDF Report</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Executive Summary -->
+                            <div class="section-block" id="sec-summary">
+                                <h3 class="block-title">Executive Summary</h3>
+                                <div class="summary-grid">
+                                    <div class="risk-widget" id="risk-widget">
+                                        <div class="risk-label">Risk Assessment</div>
+                                        <div class="risk-level" id="risk-badge">UNKNOWN</div>
+                                        <div class="risk-score">Score: <span id="risk-score">0</span> / 100</div>
+                                    </div>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="data-table">
+                                            <tbody>
+                                                <tr><th>From</th><td id="sum-from">-</td></tr>
+                                                <tr><th>Reply-To</th><td id="sum-reply">-</td></tr>
+                                                <tr><th>Return-Path</th><td id="sum-return">-</td></tr>
+                                                <tr><th>Subject</th><td id="sum-subject">-</td></tr>
+                                                <tr><th>Date</th><td id="sum-date">-</td></tr>
+                                                <tr><th>Provider</th><td id="sum-provider">-</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Risk Flags -->
+                            <div class="section-block hidden" id="sec-flags">
+                                <h3 class="block-title">Security Indicators</h3>
+                                <div class="table-responsive">
+                                    <table class="data-table indicators-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 100px;">Severity</th>
+                                                <th style="min-width: 180px;">Indicator</th>
+                                                <th style="min-width: 300px;">Details & Evidence</th>
+                                                <th style="min-width: 80px; text-align: right;">Impact</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="flags-tbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Authentication -->
+                            <div class="section-block hidden" id="sec-auth">
+                                <div class="flex-between flex-col-mobile align-center-desktop mb-4">
+                                    <h3 class="block-title mb-0">Authentication Evidence</h3>
+                                    <div class="verdict-badge mt-2-mobile" id="auth-verdict-text">-</div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 80px;">Protocol</th>
+                                                <th style="min-width: 90px;">Status</th>
+                                                <th style="min-width: 120px;">Observed</th>
+                                                <th style="min-width: 250px;">DNS Evidence</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="auth-tbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Domain Intel -->
+                            <div class="section-block hidden" id="sec-domain">
+                                <h3 class="block-title">Domain Intelligence</h3>
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <tbody id="domain-tbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- IP Analysis -->
+                            <div class="section-block hidden" id="sec-ip">
+                                <h3 class="block-title">Network & IP Analysis</h3>
+                                <div id="ip-message" class="text-muted text-sm mb-4 hidden"></div>
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 140px;">IP Address</th>
+                                                <th style="min-width: 150px;">Location</th>
+                                                <th style="min-width: 150px;">ISP / ASN</th>
+                                                <th style="min-width: 80px;">Proxy</th>
+                                                <th style="min-width: 80px;">D-Center</th>
+                                                <th style="min-width: 150px;">Reputation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ip-tbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline -->
+                            <div class="section-block hidden" id="sec-timeline">
+                                <h3 class="block-title">Investigation Timeline</h3>
+                                <div class="table-responsive">
+                                    <table class="data-table timeline-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 180px;">Timestamp (UTC)</th>
+                                                <th style="min-width: 140px;">IP Address</th>
+                                                <th style="min-width: 300px;">Routing Event</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="timeline-tbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="./app.js"></script>
+</body>
+</html>
